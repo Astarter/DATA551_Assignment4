@@ -26,6 +26,7 @@ for i in provinces:
 from src import t1_visuals, t2_visuals, t3_visuals, t4_visuals
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+server = app.server
 app.layout = html.Div([
     dbc.NavbarSimple(
         children=[
