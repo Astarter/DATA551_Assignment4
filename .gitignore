@@ -8,3 +8,6 @@ lab4/.DS_Store
 .idea/vcs.xml
 .virtual_documents/DataWrangling.ipynb.py
 .ipynb_checkpoints/DataWrangling-checkpoint.ipynb
+.virtual_documents/Report/DataVisualization.ipynb.py
+Report/.ipynb_checkpoints/DataVisualization-checkpoint.ipynb
+*.pyc
