@@ -10,7 +10,7 @@ import pandas as pd
 Statistics Canada. Table 36-10-0222-01  Gross domestic product, expenditure-based, provincial and territorial, 
 annual (x 1,000,000) https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=3610022201 
 """
-gdp = pd.read_csv("Data/GDP.csv", skiprows=[i for i in range(0, 6)])
+gdp = pd.read_csv("data/raw/GDP.csv", skiprows=[i for i in range(0, 6)])
 gdp.drop(gdp.index[0], inplace=True)
 gdp['Geography'] = gdp['Geography'].fillna(method='ffill')
 gdp = gdp[:-7]
@@ -33,7 +33,7 @@ Statistics Canada. Table 17-10-0005-01  Population estimates on July 1st, by age
 https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=1710000501
 """
 
-population = pd.read_csv('Data/population.csv', skiprows=[i for i in range(0, 4)])
+population = pd.read_csv('data/raw/population.csv', skiprows=[i for i in range(0, 4)])
 population['Geography'] = population['Geography'].fillna(method='ffill')
 population.drop(population.index[0], inplace=True)
 population.drop('Age group 3 5', axis='columns', inplace=True)
@@ -54,7 +54,7 @@ population['Year'] = population['Year'].str.split('.').str[0]
 Statistics Canada. Table 36-10-0402-01  Gross domestic product (GDP) at basic prices, by industry, provinces and 
 territories (x 1,000,000) https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=3610040201 """
 
-industry_gdp = pd.read_csv('Data/industryGDP.csv', skiprows=[i for i in range(0, 4)])
+industry_gdp = pd.read_csv('data/raw/industryGDP.csv', skiprows=[i for i in range(0, 4)])
 industry_gdp.drop(industry_gdp.index[0], inplace=True)
 industry_gdp['Geography'] = industry_gdp['Geography'].fillna(method='ffill')
 industry_gdp['North American Industry Classification System (NAICS) 7 8'] = industry_gdp['North American Industry ' \
@@ -86,7 +86,7 @@ Statistics Canada. Table 14-10-0023-01  Labour force characteristics by industry
 https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=1410002301
 """
 
-labour = pd.read_csv('Data/labour.csv', skiprows=[i for i in range(0, 4)])
+labour = pd.read_csv('data/raw/labour.csv', skiprows=[i for i in range(0, 4)])
 labour.drop(labour.index[0], inplace=True)
 labour.rename(columns={'Reference period': 'Year', 'Geography 2': 'Geography',
                        'North American Industry Classification System (NAICS) 3': 'Industry',
@@ -117,7 +117,7 @@ Statistics Canada. Table 14-10-0204-01  Average weekly earnings by industry, ann
 https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=1410020401
 """
 
-earnings = pd.read_csv('Data/earnings.csv', skiprows=[i for i in range(0, 4)])
+earnings = pd.read_csv('data/raw/earnings.csv', skiprows=[i for i in range(0, 4)])
 earnings.drop(earnings.index[0], inplace=True)
 earnings.rename(
     columns={'Reference period': 'Year', 'Industrial aggregate excluding unclassified businesses 5 6': 'All industries',
@@ -146,7 +146,7 @@ earnings['Year'] = earnings['Year'].str.split('.').str[0]
 Statistics Canada. Table 18-10-0005-01  Consumer Price Index, annual average, not seasonally adjusted\
 https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid=1810000501
 """
-cpi = pd.read_csv('Data/cpi.csv', skiprows=[i for i in range(0, 4)])
+cpi = pd.read_csv('data/raw/cpi.csv', skiprows=[i for i in range(0, 4)])
 cpi.drop(cpi.index[0], inplace=True)
 cpi['Geography'] = cpi['Geography'].fillna(method='ffill')
 cpi.rename(columns={'Reference period': 'Year'}, inplace=True)
@@ -173,7 +173,7 @@ eco = gdp.merge(population, on=['Geography', 'Year'], how='outer').merge(labour,
 eco = eco[eco.Industry != 'Unclassified industries']
 eco['Real GDP per Capita'] = eco['Real GDP'] / eco['Population'] * 1000000
 eco['Nominal GDP per Capita'] = eco['Nominal GDP'] / eco['Population'] * 1000000
-eco.to_csv(r'Data/eco.csv', index=False)
+eco.to_csv(r'data/processed/eco.csv', index=False)
 
 # eco.sample(5)
 

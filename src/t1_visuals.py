@@ -10,7 +10,7 @@ alt.themes.enable('latimes')
 
 # load in the datasets:
 
-eco = pd.read_csv('Data/eco.csv')
+eco = pd.read_csv('data/processed/eco.csv')
 my_cols = eco[eco.columns[2:16]].columns
 eco.set_index(['Geography', 'Year', 'Industry'], inplace=True)
 
@@ -20,7 +20,7 @@ eco_gr_cum = eco.pct_change().cumsum().reset_index()
 eco_gr_cum.loc[eco_gr_cum.Year == 1999, my_cols] = 0
 eco = eco.reset_index()
 
-industry_gdp = pd.read_csv('Data/industry.csv')
+industry_gdp = pd.read_csv('data/processed/industry.csv')
 industry_gdp.set_index(['Geography', 'Year', 'Industry'], inplace=True)
 
 industry_gdp_gr = industry_gdp.pct_change().reset_index()
