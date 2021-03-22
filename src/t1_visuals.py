@@ -4,13 +4,11 @@ This file draws all of the graphs
 
 import altair as alt
 import pandas as pd
-from altair import datum
 
 alt.data_transformers.disable_max_rows()
 alt.themes.enable('latimes')
 
 # load in the datasets:
-from src import wranglings as wr
 
 eco = pd.read_csv('../Data/eco.csv')
 my_cols = eco[eco.columns[2:16]].columns
