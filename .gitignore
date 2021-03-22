@@ -1,16 +1,16 @@
 
 .DS_Store
-<<<<<<< Updated upstream
-project/.DS_Store
-=======
-.DS_Store
 project/.DS_Store
 project/data/.DS_Store
->>>>>>> Stashed changes
-*.pyc
-.idea/vcs.xml
-.idea/modules.xml
-.idea/misc.xml
-.idea/inspectionProfiles/Project_Default.xml
-.idea/inspectionProfiles/profiles_settings.xml
 .idea/DATA551_Assignment4.iml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+src/__pycache__/t1_visuals.cpython-38.pyc
+src/__pycache__/t2_visuals.cpython-38.pyc
+src/__pycache__/t3_visuals.cpython-38.pyc
+src/__pycache__/t4_visuals.cpython-38.pyc
+src/__pycache__/wranglings.cpython-38.pyc
+*.pyc
