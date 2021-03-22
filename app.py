@@ -55,7 +55,7 @@ app.layout = html.Div([
         brand_href="#",
         color="primary",
         dark=True,
-        style={"position": "sticky"}
+        sticky='top'
     ),
     html.Br(),
     dbc.Row([
