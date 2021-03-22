@@ -1,7 +1,7 @@
-# Dashboard for macroeconomic analysis of Canada by provinces/territories
-
 [![Work in Repl.it](https://classroom.github.com/assets/work-in-replit-14baed9a392b3a25080506f3b7b6d57f295ec2978f6f33ec97e36a161684cbe9.svg)](https://classroom.github.com/online_ide?assignment_repo_id=371659&assignment_repo_type=GroupAssignmentRepo)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+
+# Dashboard for macroeconomic analysis of Canada by provinces/territories
 
 ## Description
 
