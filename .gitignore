@@ -7,3 +7,10 @@ project/.DS_Store
 project/.DS_Store
 project/data/.DS_Store
 >>>>>>> Stashed changes
+*.pyc
+.idea/vcs.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/inspectionProfiles/Project_Default.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/DATA551_Assignment4.iml
