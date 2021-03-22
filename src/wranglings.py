@@ -71,7 +71,7 @@ industry_gdp = industry_gdp.astype(convert_dict)
 industry_gdp['Year'] = industry_gdp['Year'].str.split('.').str[0]
 industry_gdp['Industry'] = industry_gdp['Industry'].str.strip()
 industry_gdp['Geography'] = industry_gdp['Geography'].str.strip()
-industry_gdp.to_csv(r'industry.csv', index=False)
+industry_gdp.to_csv(r'../Data/industry.csv', index=False)
 
 # industry_gdp.head()
 
@@ -153,7 +153,7 @@ eco = gdp.merge(population, on=['Geography', 'Year'], how = 'outer').merge(labou
 eco = eco[eco.Industry != 'Unclassified industries']
 eco['Real GDP per Capita'] = eco['Real GDP'] / eco['Population'] * 1000000
 eco['Nominal GDP per Capita'] = eco['Nominal GDP'] / eco['Population'] * 1000000
-eco.to_csv(r'eco.csv', index=False)
+eco.to_csv(r'../Data/eco.csv', index=False)
 
 # eco.sample(5)
 
