@@ -6,3 +6,5 @@ lab4/.DS_Store
 .idea/misc.xml
 .idea/modules.xml
 .idea/vcs.xml
+.virtual_documents/DataWrangling.ipynb.py
+.ipynb_checkpoints/DataWrangling-checkpoint.ipynb
