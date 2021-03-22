@@ -76,7 +76,7 @@ industry_gdp = industry_gdp.astype(convert_dict)
 industry_gdp['Year'] = industry_gdp['Year'].str.split('.').str[0]
 industry_gdp['Industry'] = industry_gdp['Industry'].str.strip()
 industry_gdp['Geography'] = industry_gdp['Geography'].str.strip()
-industry_gdp.to_csv(r'Data/industry.csv', index=False)
+industry_gdp.to_csv(r'data/processed/industry.csv', index=False)
 
 # industry_gdp.head()
 
