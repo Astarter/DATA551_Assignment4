@@ -51,10 +51,11 @@ app.layout = html.Div([
                 label="References",
             ),
         ],
-        brand="Canada 21st Century Macroeconomic Analysis",
+        brand="Canada 1999-2019 Macroeconomic Analysis",
         brand_href="#",
         color="primary",
         dark=True,
+        style={"position": "sticky"}
     ),
     html.Br(),
     dbc.Row([
@@ -116,7 +117,36 @@ app.layout = html.Div([
                 ],
                     label="Real GDP",
                 ),
-                dbc.Tab(label="Nominal GDP"),
+                dbc.Tab([
+                    # Tab 1:
+                    dbc.Row([
+                        dbc.Col([
+                            # Graphs:
+                            dbc.Row([
+                                dbc.Col([
+                                    html.Iframe(
+                                        id='tab2_1',
+                                        style={'border-width': '0', 'width': '100%', 'height': '900px'}
+                                    )
+                                ]),
+                            ]),
+                            dbc.Row([
+                                dbc.Col([
+                                    html.Iframe(
+                                        id='tab2_2',
+                                        style={'border-width': '0', 'width': '100%', 'height': '900px'}
+                                    )
+                                ]),
+                            ]),
+                        ], width=8
+                        ),
+                        dbc.Col([
+                            # Texts:
+
+                        ], width=4
+                        )
+                    ])
+                ], label="Nominal GDP"),
                 dbc.Tab(label="Labour Force"),
                 dbc.Tab(label="Inflation"),
             ])
@@ -145,6 +175,22 @@ def update_output(year, geo):
     Input("geo", 'value'))
 def update_output(year, geo):
     return t1_visuals.concat_gdpc_vis(year, geo)
+
+
+@app.callback(
+    Output('tab2_1', 'srcDoc'),
+    Input('year', 'value'),
+    Input("geo", 'value'))
+def update_output(year, geo):
+    return t2_visuals.concat_ngdp_vis(year, geo)
+
+
+@app.callback(
+    Output('tab2_2', 'srcDoc'),
+    Input('year', 'value'),
+    Input("geo", 'value'))
+def update_output(year, geo):
+    return t2_visuals.concat_ngdpc_vis(year, geo)
 
 
 if __name__ == '__main__':
