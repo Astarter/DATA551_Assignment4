@@ -111,8 +111,44 @@ app.layout = html.Div([
                             ], width=8
                             ),
                             dbc.Col([
+                                html.Br(),
                                 # Texts:
-
+                                dbc.Jumbotron(
+                                    [
+                                        html.H2("Real GDP", className="display-4"),
+                                        html.H4("Gross domestic product(GDP)"),
+                                        html.P(
+                                            "The total unduplicated value of the goods and services produced in the "
+                                            "economic territory of a country or region during a given period. A "
+                                            "valuation expressed in terms of the prices actually paid by the "
+                                            "purchaser after all applicable taxes and subsidies. "
+                                        ),
+                                        html.Hr(className="my-2"),
+                                        html.H4("GDP, expenditure-based"),
+                                        html.P(
+                                            "The sum of expenditure on final consumption plus gross capital formation "
+                                            "plus exports less imports. "
+                                        ),
+                                        html.Hr(className="my-2"),
+                                        html.H4("GDP at market prices"),
+                                        html.P(
+                                            "Gross domestic product at basic prices (traditional value) plus taxes "
+                                            "less subsidies on products. "
+                                        ),
+                                        html.Hr(className="my-2"),
+                                        html.H4("Real gross domestic product"),
+                                        html.P(
+                                            "Gross domestic product at constant prices (chained 2012 dollars)."
+                                        ),
+                                        html.Hr(className="my-2"),
+                                        html.H4("Chained dollars"),
+                                        html.P(
+                                            "Method of adjusting real dollar amounts for inflation over time, "
+                                            "to allow the comparison of figures from different years. It generally "
+                                            "reflects dollar figures computed with 2012 as the base year. "
+                                        ),
+                                    ]
+                                )
                             ], width=4
                             )
                         ])
@@ -121,7 +157,22 @@ app.layout = html.Div([
                 ),
                 dbc.Tab(
                     [
-                        # tab1.5:
+                        # tab1.5
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Jumbotron(
+                                    [
+                                        html.H2("Real GDP - Industry", className="display-4"),
+                                        html.H4("GDP by Industry"),
+                                        html.P(
+                                            "Also referred to as valued-added, equals output by the industry minus "
+                                            "the value of intermediate inputs that were purchased from other "
+                                            "industries. domestic or foreign. "
+                                        )
+                                    ]
+                                )
+                            ])
+                        ]),
                         dbc.Row([
                             dbc.Col([
                                 html.Iframe(
@@ -157,8 +208,45 @@ app.layout = html.Div([
                             ], width=8
                             ),
                             dbc.Col([
+                                html.Br(),
                                 # Texts:
-                                html.Div("hello")
+                                dbc.Jumbotron(
+                                    [
+                                        html.H2("Nominal GDP", className="display-4"),
+                                        html.H4("Gross domestic product(GDP)"),
+                                        html.P(
+                                            "The total unduplicated value of the goods and services produced in the "
+                                            "economic territory of a country or region during a given period. A "
+                                            "valuation expressed in terms of the prices actually paid by the "
+                                            "purchaser after all applicable taxes and subsidies. "
+                                        ),
+                                        html.Hr(className="my-2"),
+                                        html.H4("GDP, expenditure-based"),
+                                        html.P(
+                                            "The sum of expenditure on final consumption plus gross capital formation "
+                                            "plus exports less imports. "
+                                        ),
+                                        html.Hr(className="my-2"),
+                                        html.H4("GDP at market prices"),
+                                        html.P(
+                                            "Gross domestic product at basic prices (traditional value) plus taxes "
+                                            "less subsidies on products. "
+                                        ),
+                                        html.Hr(className="my-2"),
+                                        html.H4("Nominal GDP"),
+                                        html.P(
+                                            "Gross domestic product using current prices, without adjusting for "
+                                            "inflation. "
+                                        ),
+                                        html.Hr(className="my-2"),
+                                        html.H4("Chained dollars"),
+                                        html.P(
+                                            "Method of adjusting real dollar amounts for inflation over time, "
+                                            "to allow the comparison of figures from different years. It generally "
+                                            "reflects dollar figures computed with 2012 as the base year. "
+                                        ),
+                                    ]
+                                )
                             ], width=4
                             )
                         ])
@@ -167,6 +255,19 @@ app.layout = html.Div([
                 dbc.Tab(
                     [
                         # tab 3:
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Jumbotron(
+                                    [
+                                        html.H2("Labour Force", className="display-4"),
+                                        html.H4("Unemployment Rate"),
+                                        html.P(
+                                            "Unemployed people as a percentage of the labour force."
+                                        )
+                                    ]
+                                )
+                            ])
+                        ]),
                         dbc.Row([
                             dbc.Col([
                                 html.Iframe(
@@ -185,6 +286,19 @@ app.layout = html.Div([
                         ]),
                         dbc.Row([
                             dbc.Col([
+                                dbc.Jumbotron(
+                                    [
+                                        html.H4("Earnings"),
+                                        html.P(
+                                            "Employment and average weekly earnings (including overtime) for all "
+                                            "employees. "
+                                        )
+                                    ]
+                                )
+                            ])
+                        ]),
+                        dbc.Row([
+                            dbc.Col([
                                 html.Iframe(
                                     id='tab3_3',
                                     style={'border-width': '0', 'width': '100%', 'height': '300px'}
@@ -196,6 +310,23 @@ app.layout = html.Div([
                 dbc.Tab(
                     [
                         # tab4:
+                        dbc.Row([
+                            dbc.Col([
+                                dbc.Jumbotron(
+                                    [
+                                        html.H2("Inflation", className="display-4"),
+                                        html.H4("Price index"),
+                                        html.P("An average of the proportionate changes in the prices of a specified "
+                                               "set of goods and services between two periods of time."),
+                                        html.Hr(className="my-2"),
+                                        html.H4("Consumer Price Index(CPI)"),
+                                        html.P("Represents changes in prices as experienced by consumers. It measures "
+                                               "price change by comparing, through time, the cost of a fixed basket "
+                                               "of goods and services."),
+                                    ]
+                                )
+                            ])
+                        ]),
                         dbc.Row([
                             dbc.Col([
                                 html.Iframe(
@@ -233,12 +364,14 @@ def update_output(year, geo):
 def update_output(year, geo):
     return t1_visuals.concat_gdpc_vis(year, geo)
 
+
 @app.callback(
     Output('tab1_5_1', 'srcDoc'),
     Input('year', 'value'),
     Input("geo", 'value'))
 def update_output(year, geo):
     return t1_visuals.concat_gdp_indus_vis(year, geo)
+
 
 @app.callback(
     Output('tab2_1', 'srcDoc'),
