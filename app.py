@@ -86,70 +86,126 @@ app.layout = html.Div([
     dbc.Row([
         dbc.Col(
             dbc.Tabs([
-                dbc.Tab([
-                    # Tab 1:
-                    dbc.Row([
-                        dbc.Col([
-                            # Graphs:
-                            dbc.Row([
-                                dbc.Col([
-                                    html.Iframe(
-                                        id='tab1_1',
-                                        style={'border-width': '0', 'width': '100%', 'height': '900px'}
-                                    )
+                dbc.Tab(
+                    [
+                        # Tab 1:
+                        dbc.Row([
+                            dbc.Col([
+                                # Graphs:
+                                dbc.Row([
+                                    dbc.Col([
+                                        html.Iframe(
+                                            id='tab1_1',
+                                            style={'border-width': '0', 'width': '100%', 'height': '900px'}
+                                        )
+                                    ]),
                                 ]),
-                            ]),
-                            dbc.Row([
-                                dbc.Col([
-                                    html.Iframe(
-                                        id='tab1_2',
-                                        style={'border-width': '0', 'width': '100%', 'height': '900px'}
-                                    )
+                                dbc.Row([
+                                    dbc.Col([
+                                        html.Iframe(
+                                            id='tab1_2',
+                                            style={'border-width': '0', 'width': '100%', 'height': '900px'}
+                                        )
+                                    ]),
                                 ]),
-                            ]),
-                        ], width=8
-                        ),
-                        dbc.Col([
-                            # Texts:
+                            ], width=8
+                            ),
+                            dbc.Col([
+                                # Texts:
 
-                        ], width=4
-                        )
-                    ])
-                ],
+                            ], width=4
+                            )
+                        ])
+                    ],
                     label="Real GDP",
                 ),
-                dbc.Tab([
-                    # Tab 1:
-                    dbc.Row([
-                        dbc.Col([
-                            # Graphs:
-                            dbc.Row([
-                                dbc.Col([
-                                    html.Iframe(
-                                        id='tab2_1',
-                                        style={'border-width': '0', 'width': '100%', 'height': '900px'}
-                                    )
+                dbc.Tab(
+                    [
+                        # tab1.5:
+                        dbc.Row([
+                            dbc.Col([
+                                html.Iframe(
+                                    id='tab1_5_1',
+                                    style={'border-width': '0', 'width': '100%', 'height': '900px'}
+                                )
+                            ])
+                        ])
+                    ],
+                    label="Real GDP - Industry"),
+                dbc.Tab(
+                    [
+                        # Tab 2:
+                        dbc.Row([
+                            dbc.Col([
+                                # Graphs:
+                                dbc.Row([
+                                    dbc.Col([
+                                        html.Iframe(
+                                            id='tab2_1',
+                                            style={'border-width': '0', 'width': '100%', 'height': '900px'}
+                                        )
+                                    ]),
                                 ]),
-                            ]),
-                            dbc.Row([
-                                dbc.Col([
-                                    html.Iframe(
-                                        id='tab2_2',
-                                        style={'border-width': '0', 'width': '100%', 'height': '900px'}
-                                    )
+                                dbc.Row([
+                                    dbc.Col([
+                                        html.Iframe(
+                                            id='tab2_2',
+                                            style={'border-width': '0', 'width': '100%', 'height': '900px'}
+                                        )
+                                    ]),
                                 ]),
-                            ]),
-                        ], width=8
-                        ),
-                        dbc.Col([
-                            # Texts:
-
-                        ], width=4
-                        )
-                    ])
-                ], label="Nominal GDP"),
-                dbc.Tab(label="Labour Force"),
-                dbc.Tab(label="Inflation"),
+                            ], width=8
+                            ),
+                            dbc.Col([
+                                # Texts:
+                                html.Div("hello")
+                            ], width=4
+                            )
+                        ])
+                    ],
+                    label="Nominal GDP"),
+                dbc.Tab(
+                    [
+                        # tab 3:
+                        dbc.Row([
+                            dbc.Col([
+                                html.Iframe(
+                                    id='tab3_1',
+                                    style={'border-width': '0', 'width': '100%', 'height': '600px'}
+                                )
+                            ])
+                        ]),
+                        dbc.Row([
+                            dbc.Col([
+                                html.Iframe(
+                                    id='tab3_2',
+                                    style={'border-width': '0', 'width': '100%', 'height': '900px'}
+                                )
+                            ])
+                        ]),
+                        dbc.Row([
+                            dbc.Col([
+                                html.Iframe(
+                                    id='tab3_3',
+                                    style={'border-width': '0', 'width': '100%', 'height': '300px'}
+                                )
+                            ])
+                        ]),
+                    ],
+                    label="Labour Force"),
+                dbc.Tab(
+                    [
+                        # tab4:
+                        dbc.Row([
+                            dbc.Col([
+                                html.Iframe(
+                                    id='tab4_1',
+                                    style={'border-width': '0', 'width': '100%', 'height': '900px'}
+                                )
+                            ])
+                        ])
+                    ],
+                    label="Inflation"),
             ])
         )
     ], style={
@@ -177,6 +233,12 @@ def update_output(year, geo):
 def update_output(year, geo):
     return t1_visuals.concat_gdpc_vis(year, geo)
 
+@app.callback(
+    Output('tab1_5_1', 'srcDoc'),
+    Input('year', 'value'),
+    Input("geo", 'value'))
+def update_output(year, geo):
+    return t1_visuals.concat_gdp_indus_vis(year, geo)
 
 @app.callback(
     Output('tab2_1', 'srcDoc'),
@@ -192,6 +254,38 @@ def update_output(year, geo):
     Input("geo", 'value'))
 def update_output(year, geo):
     return t2_visuals.concat_ngdpc_vis(year, geo)
+
+
+@app.callback(
+    Output('tab3_1', 'srcDoc'),
+    Input('year', 'value'),
+    Input("geo", 'value'))
+def update_output(year, geo):
+    return t3_visuals.concat_employment_vis(year, geo)
+
+
+@app.callback(
+    Output('tab3_2', 'srcDoc'),
+    Input('year', 'value'),
+    Input("geo", 'value'))
+def update_output(year, geo):
+    return t3_visuals.concat_earnings_vis(year, geo)
+
+
+@app.callback(
+    Output('tab3_3', 'srcDoc'),
+    Input('year', 'value'),
+    Input("geo", 'value'))
+def update_output(year, geo):
+    return t3_visuals.concat_earnings_rank(year, geo)
+
+
+@app.callback(
+    Output('tab4_1', 'srcDoc'),
+    Input('year', 'value'),
+    Input("geo", 'value'))
+def update_output(year, geo):
+    return t4_visuals.concat_cpi_vis(year, geo)
 
 
 if __name__ == '__main__':

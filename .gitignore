@@ -14,3 +14,6 @@ src/__pycache__/t3_visuals.cpython-38.pyc
 src/__pycache__/t4_visuals.cpython-38.pyc
 src/__pycache__/wranglings.cpython-38.pyc
 *.pyc
+.virtual_documents/Report/DataVisualization.ipynb.py
+Presentation/~$project_pres2.pptx
+Report/.ipynb_checkpoints/DataVisualization-checkpoint.ipynb

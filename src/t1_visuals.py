@@ -101,29 +101,6 @@ def concat_gpd_vis(year, geo):
                  alt.Tooltip('sum(Real GDP):Q', format=('.2%'), title='Growth rate')]).transform_filter(
         alt.FieldEqualPredicate(field='Year', equal=year))
 
-    # real_gdp_ind_rank = alt.Chart(industry_gdp, title="GDP contribution by industry").mark_bar().encode(
-    #     y=alt.Y('sum(Industry GDP):Q', title='CA$ (MM)',
-    #             axis=alt.Axis(tickCount=3, titleFontSize=20, grid=False, format=('$,f'))),
-    #     x=alt.X('Industry:O', sort='-y', axis=alt.Axis(labelAngle=-90), title=None),
-    #     color=alt.Color('sum(Industry GDP)', title='GDP', scale=alt.Scale(scheme='blues'),
-    #                     legend=alt.Legend(format=('$,f'))),
-    #     tooltip=[alt.Tooltip('Geography', title='Province/territory'), alt.Tooltip('Year'), alt.Tooltip('Industry'),
-    #              alt.Tooltip('sum(Industry GDP):Q', format=('$,.0f'), title='GDP')]).transform_filter(
-    #     alt.FieldEqualPredicate(field='Year', equal=year)).transform_filter(
-    #     alt.FieldEqualPredicate(field='Geography', equal=geo)).configure_view(strokeOpacity=0).configure_axis(
-    #     domain=False, ticks=False).configure_title(fontSize=30)
-    #
-    # real_gdp_ind_gr_rank = alt.Chart(industry_gdp_gr, title="GDP growth rate by industry").mark_bar().encode(
-    #     y=alt.Y('sum(Industry GDP):Q', title=None, axis=alt.Axis(tickCount=3, grid=False, format=('%'))),
-    #     x=alt.X('Industry:O', sort='-y', title=None, axis=alt.Axis(labelLimit=90, labelAngle=-90)),
-    #     color=alt.Color('sum(Industry GDP)', title='GDP growth rate', scale=alt.Scale(scheme='redblue'),
-    #                     legend=alt.Legend(format=('%'))),
-    #     tooltip=[alt.Tooltip('Geography', title='Province/territory'), alt.Tooltip('Year'), alt.Tooltip('Industry'),
-    #              alt.Tooltip('sum(Industry GDP):Q', format=('.2%'), title='Growth rate')]).transform_filter(
-    #     alt.FieldEqualPredicate(field='Year', equal=year)).transform_filter(
-    #     alt.FieldEqualPredicate(field='Geography', equal=geo)).configure_view(strokeOpacity=0).configure_axis(
-    #     domain=False, ticks=False).configure_title(fontSize=30)
-
     w = 300
     h = 200
 
@@ -274,3 +251,42 @@ def concat_gdpc_vis(year, geo):
         domain=False).configure_title(fontSize=30)
 
     return gdpc_vis.to_html()
+
+
+def concat_gdp_indus_vis(year, geo):
+    real_gdp_ind_rank = alt.Chart(industry_gdp, title="GDP contribution by industry").mark_bar().encode(
+        y=alt.Y('sum(Industry GDP):Q', title='CA$ (MM)',
+                axis=alt.Axis(tickCount=3, titleFontSize=20, grid=False, format=('$,f'))),
+        x=alt.X('Industry:O', sort='-y', axis=alt.Axis(labelAngle=-90), title=None),
+        color=alt.Color('sum(Industry GDP)', title='GDP', scale=alt.Scale(scheme='blues'),
+                        legend=alt.Legend(format=('$,f'))),
+        tooltip=[alt.Tooltip('Geography', title='Province/territory'), alt.Tooltip('Year'), alt.Tooltip('Industry'),
+                 alt.Tooltip('sum(Industry GDP):Q', format=('$,.0f'), title='GDP')]).transform_filter(
+        alt.FieldEqualPredicate(field='Year', equal=year)).transform_filter(
+        alt.FieldEqualPredicate(field='Geography', equal=geo))
+
+    real_gdp_ind_gr_rank = alt.Chart(industry_gdp_gr, title="GDP growth rate by industry").mark_bar().encode(
+        y=alt.Y('sum(Industry GDP):Q', title=None, axis=alt.Axis(tickCount=3, grid=False, format=('%'))),
+        x=alt.X('Industry:O', sort='-y', title=None, axis=alt.Axis(labelLimit=90, labelAngle=-90)),
+        color=alt.Color('sum(Industry GDP)', title='GDP growth rate', scale=alt.Scale(scheme='redblue'),
+                        legend=alt.Legend(format=('%'))),
+        tooltip=[alt.Tooltip('Geography', title='Province/territory'), alt.Tooltip('Year'), alt.Tooltip('Industry'),
+                 alt.Tooltip('sum(Industry GDP):Q', format=('.2%'), title='Growth rate')]).transform_filter(
+        alt.FieldEqualPredicate(field='Year', equal=year)).transform_filter(
+        alt.FieldEqualPredicate(field='Geography', equal=geo))
+
+    w = 400
+    h = 300
+
+    real_gdp_ind_rank = real_gdp_ind_rank.properties(
+        width=w,
+        height=h
+    )
+
+    real_gdp_ind_gr_rank = real_gdp_ind_gr_rank.properties(
+        width=w,
+        height=h
+    )
+    vis = (real_gdp_ind_rank & real_gdp_ind_gr_rank).configure_view(strokeOpacity=0).configure_axis(domain=False,
+                                                                                                    ticks=False).configure_title(fontSize=30)
+    return vis.to_html()
