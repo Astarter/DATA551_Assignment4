@@ -89,7 +89,7 @@ def concat_employment_vis(year, geo):
         height=h
     )
 
-    er_rank = er_evo.properties(
+    er_rank = er_rank.properties(
         width=w,
         height=h
     )
@@ -223,7 +223,7 @@ def concat_earnings_rank(year, geo):
         color=alt.condition((alt.datum.Geography == geo) | (alt.datum.Geography == 'Canada'), alt.value('darkblue'),
                             alt.value('lightblue')),
         tooltip=[alt.Tooltip('Geography', title='Province/territory'), alt.Tooltip('Year'),
-                 alt.Tooltip('average(All industries):Q', format=('$,'), title='Earnings')]).transform_filter(
+                 alt.Tooltip('average(All industries):Q', format='$,', title='Earnings')]).transform_filter(
         alt.FieldEqualPredicate(field='Year', equal=year)).configure_view(strokeOpacity=0).configure_axis(
         domain=False).configure_title(fontSize=30)
 
