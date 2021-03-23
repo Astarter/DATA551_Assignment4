@@ -5,7 +5,7 @@ This file renders all the layouts.
 import dash
 import dash_html_components as html
 import dash_core_components as dcc
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 
 # prepare the slider and drop down menu items:
@@ -30,6 +30,12 @@ server = app.server
 app.layout = html.Div([
     dbc.NavbarSimple(
         children=[
+            dbc.Button(
+                "Select Year & Province",
+                id="collapse-button",
+                className="mb-3",
+                color="primary",
+            ),
             dbc.DropdownMenu(
                 children=[
                     dbc.DropdownMenuItem("GDP", href="https://www150.statcan.gc.ca/t1/tbl1/en/cv.action?pid"
@@ -59,29 +65,56 @@ app.layout = html.Div([
         sticky='top'
     ),
     html.Br(),
-    dbc.Row([
-        dbc.Col([
-            dbc.Label(html.H5("Year:")),
-            dcc.Slider(
-                id="year",
-                min=minyear,
-                max=maxyear,
-                value=2009,
-                marks={minyear: str(minyear), 2009: "2009", maxyear: str(maxyear)},
-                tooltip={"placement": "topLeft"})
-        ], width=6),
-        dbc.Col([
-            dbc.Label(html.H5("Province:")),
-            dcc.Dropdown(
-                id="geo",
-                options=drop_options,
-                value="British Columbia"
-            )], width=6
-        )
-    ], style={
-        "margin-left": "3px",
-        "margin-right": "3px",
-    }),
+    dbc.Collapse(
+        dbc.Row([
+            dbc.Col([
+                dbc.Label(html.H5("Year:")),
+                dcc.Slider(
+                    id="year",
+                    min=minyear,
+                    max=maxyear,
+                    value=2009,
+                    marks={minyear: str(minyear), 2009: "2009", maxyear: str(maxyear)},
+                    tooltip={"placement": "topLeft"})
+            ], width=6),
+            dbc.Col([
+                dbc.Label(html.H5("Province:")),
+                dcc.Dropdown(
+                    id="geo",
+                    options=drop_options,
+                    value="British Columbia"
+                )], width=6
+            )
+        ], style={
+            "margin-left": "3px",
+            "margin-right": "3px",
+        }),
+        id="collapse",
+        # style={"position": "sticky"}
+    ),
+    # dbc.Row([
+    #     dbc.Col([
+    #         dbc.Label(html.H5("Year:")),
+    #         dcc.Slider(
+    #             id="year",
+    #             min=minyear,
+    #             max=maxyear,
+    #             value=2009,
+    #             marks={minyear: str(minyear), 2009: "2009", maxyear: str(maxyear)},
+    #             tooltip={"placement": "topLeft"})
+    #     ], width=6),
+    #     dbc.Col([
+    #         dbc.Label(html.H5("Province:")),
+    #         dcc.Dropdown(
+    #             id="geo",
+    #             options=drop_options,
+    #             value="British Columbia"
+    #         )], width=6
+    #     )
+    # ], style={
+    #     "margin-left": "3px",
+    #     "margin-right": "3px",
+    # }),
     html.Br(),
     dbc.Row([
         dbc.Col(
@@ -278,14 +311,6 @@ app.layout = html.Div([
                         ]),
                         dbc.Row([
                             dbc.Col([
-                                html.Iframe(
-                                    id='tab3_2',
-                                    style={'border-width': '0', 'width': '100%', 'height': '900px'}
-                                )
-                            ])
-                        ]),
-                        dbc.Row([
-                            dbc.Col([
                                 dbc.Jumbotron(
                                     [
                                         html.H4("Earnings"),
@@ -294,6 +319,14 @@ app.layout = html.Div([
                                             "employees. "
                                         )
                                     ]
+                                )
+                            ])
+                        ]),
+                        dbc.Row([
+                            dbc.Col([
+                                html.Iframe(
+                                    id='tab3_2',
+                                    style={'border-width': '0', 'width': '100%', 'height': '900px'}
                                 )
                             ])
                         ]),
@@ -347,6 +380,17 @@ app.layout = html.Div([
     "width": "100%",
 }
 )
+
+
+@app.callback(
+    Output("collapse", "is_open"),
+    [Input("collapse-button", "n_clicks")],
+    [State("collapse", "is_open")],
+)
+def toggle_collapse(n, is_open):
+    if n:
+        return not is_open
+    return is_open
 
 
 @app.callback(
