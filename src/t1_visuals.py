@@ -287,6 +287,6 @@ def concat_gdp_indus_vis(year, geo):
         width=w,
         height=h
     )
-    vis = (real_gdp_ind_rank & real_gdp_ind_gr_rank).configure_view(strokeOpacity=0).configure_axis(domain=False,
+    vis = (real_gdp_ind_rank | real_gdp_ind_gr_rank).configure_view(strokeOpacity=0).configure_axis(domain=False,
                                                                                                     ticks=False).configure_title(fontSize=30)
     return vis.to_html()
