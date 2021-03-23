@@ -4,7 +4,9 @@ Our analysis now focuses on three aspects: national output (measured by Gross Do
 
 The datasets collected were all in CSV format, so we used Python and Pandas for the exploratory data analysis. Our data wrangling efforts were mainly put in getting rid of irrelevant values, specifying the correct data types and renaming the columns for ease of interpretation. To summarize and aggregate the information, we also merged 5 datasets together, ending up with 2 data frames and 2 more versions of them with percentage changes values. 
 
-In regards of technologies, we have concluded that when using Dash, it is better to use Python language for programming instead of R, given the resources available online. Also, in terms of visualization, we agreed that Altair provided better features than ggplot, and it was easier to use.  
+In regards of technologies, we have concluded that when using Dash, it is better to use Python language for programming instead of R, given the resources available online. Also, in terms of visualization, we agreed that Altair provided better features than ggplot, and it was easier to use.
+
+Our dashboard still have some issues displaying some of the labels, however the hove-over feature we deployed was a quick-fix to the problem and shows even more details, nevertheless we would still like to adjust these for design purposes. 
 
 By completing this project, we now realize the importance of the construct of cognitive load from the user’s perspective of a visualization, the principles of effective dashboard development, design, prototyping and platform evaluation. 
 
