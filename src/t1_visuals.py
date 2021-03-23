@@ -82,7 +82,7 @@ def concat_gpd_vis(year, geo):
         alt.FieldEqualPredicate(field='Year', equal=year))
 
     real_gdp_gr_evo = alt.Chart(eco_gr, title="GDP growth rates").mark_bar(
-        point=alt.OverlayMarkDef(filled=False, fill='darkblue'), size=16).encode(
+        point=alt.OverlayMarkDef(filled=False, fill='darkblue'), size=14).encode(
         x=alt.X('Year', title='Year',
                 axis=alt.Axis(tickCount=5, titleFontSize=20, grid=False, ticks=False, format='Y')),
         y=alt.Y('sum(Real GDP):Q', axis=alt.Axis(tickCount=3, grid=False, ticks=False, format=('%')), title=None),
@@ -213,7 +213,7 @@ def concat_gdpc_vis(year, geo):
         alt.FieldEqualPredicate(field='Year', equal=year))
 
     real_gdpc_gr_evo = alt.Chart(eco_gr, title="GDP per Capita growth rates").mark_bar(
-        point=alt.OverlayMarkDef(filled=False, fill='darkblue'), size=16).encode(
+        point=alt.OverlayMarkDef(filled=False, fill='darkblue'), size=14).encode(
         x=alt.X('Year', title='Year',
                 axis=alt.Axis(tickCount=5, titleFontSize=20, grid=False, ticks=False, format='Y')),
         y=alt.Y('average(Real GDP per Capita):Q', axis=alt.Axis(tickCount=3, grid=False, ticks=False, format=('%')),
